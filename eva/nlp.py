@@ -10,12 +10,14 @@ class NLP():
         doc = self.nlp(self.question)
 
         # Analyze syntax
-        print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
-        print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
+        c = [chunk.text for chunk in doc.noun_chunks]
+        return c[1]
+        # print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
+        # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
-        # Find named entities, phrases and concepts
-        for entity in doc.ents:
-            print(entity.text, entity.label_)
+        # # Find named entities, phrases and concepts
+        # for entity in doc.ents:
+        #     print(entity.text, entity.label_)
 
-nlp = NLP("What is the biggest country in Europe?")
-nlp.process();
+# nlp = NLP("Who discovered penicillin?")
+# nlp.process();
