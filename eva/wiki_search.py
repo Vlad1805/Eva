@@ -2,9 +2,12 @@ import wikipediaapi
 from googlesearch import search
 
 def get_wikipage_name(query):
-    l = search(query + "wikipedia", tld="co.in", num=2, stop=2, lang="en")
-    l = list(filter(lambda x: "Wikipedia" in x, l))
-    return l[0]
+    l = list(filter(lambda x: "Wikipedia" in x, \
+    search(query + "wikipedia", tld="co.in", num=1, stop=2, lang="en")))
+    return next(l)
+    # l = (list(filter(lambda x: "wikipedia" in x, \
+    # search(query + "wikipedia", tld="co.in", num=1, stop=4, lang="en"))))
+    # print(l[0])
 def generate_wiki_page(query):
     name = get_wikipage_name(query).split("/")[-1]
     print(name)
