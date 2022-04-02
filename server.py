@@ -3,6 +3,9 @@ import string
 from urllib import response
 import flask
 from flask import jsonify, request
+from eva.nlp import NLP
+from eva.oracle import Oracle
+from eva.wiki_search import generate_wiki_page
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -19,9 +22,13 @@ def check_sanity():
 @app.route('/question', methods=['POST'])
 def question():
     question_contents = request.get_json()
-    random_string = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
+    # nlp = NLP(question_contents["question_text"])
+    generate_wiki_page('Romania')
+    with open('paragraph.txt', 'r', encoding="utf-8") as f:
+        paragraph = f.readlines()[0]
+    oracle = Oracle(question_contents["question_text"], paragraph)
     answer= jsonify({
-        "answer": random_string
+        "answer": oracle.answer()
     })
     answer.status_code=200
     return answer

@@ -31,9 +31,4 @@ class Oracle():
 
         return answer.strip("\"")
 
-# print(paragraph)
-with open('paragraph.txt', 'r', encoding="utf-8") as f:
-    paragraph = f.readlines()[0]
-oracle = Oracle('''What is the capital of Romania?''', paragraph)
-with open('output.txt', 'w') as f:
-    f.write(oracle.answer())
+
