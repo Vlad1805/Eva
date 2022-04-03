@@ -9,10 +9,9 @@ def get_wikipage_name(query):
     # print(l[0])
 def generate_wiki_page(query):
     name = get_wikipage_name(query).split("/")[-1]
-    print(name)
     wiki_wiki = wikipediaapi.Wikipedia('en')
     page_py = wiki_wiki.page(name)
     with open('paragraph.txt', "w", encoding="utf-8") as f:
         f.writelines(page_py.text)
 
-# generate_wiki_page("Who is the lead singer of band Vita de vie?")
+# generate_wiki_page("Where is the northernmost point of land in the world?")

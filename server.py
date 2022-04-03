@@ -25,11 +25,11 @@ def question():
     generate_wiki_page(question_contents["question_text"])
     with open('paragraph.txt', 'r', encoding="utf-8") as f:
         paragraph = f.read()
-    oracle = Oracle(question_contents["question_text"], paragraph)
+    oracle = Oracle(question_contents, paragraph)
     answer= jsonify({
         "answer": oracle.answer()
     })
     answer.status_code=200
     return answer
 
-app.run(port=3000, host="0.0.0.0")
+app.run(port=3000)
