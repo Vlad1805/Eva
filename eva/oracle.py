@@ -11,13 +11,14 @@ class Oracle():
         self.nlp = pipeline('question-answering', model=model_name, tokenizer=model_name)
     
     def answer(self):
-        QA_input = {
-            'question': self.question,
-            'context': self.paragraph,
-        }
-        res = self.nlp(QA_input)
-
-        return res["answer"].strip("\"")
-
+        try:
+            QA_input = {
+                'question': self.question,
+                'context': self.paragraph,
+            }
+            res = self.nlp(QA_input)
+            return res["answer"].strip("\"")
+        except:
+            return "Noapte buna gigi"
 
 

@@ -2,8 +2,7 @@ import wikipediaapi
 from googlesearch import search
 
 def get_wikipage_name(query):
-    l = list(filter(lambda x: "Wikipedia" in x, \
-    search(query + "wikipedia", tld="co.in", num=1, stop=2, lang="en")))
+    l = search(query + "wikipedia", tld="co.in", num=1, stop=1, lang="en")
     return next(l)
     # l = (list(filter(lambda x: "wikipedia" in x, \
     # search(query + "wikipedia", tld="co.in", num=1, stop=4, lang="en"))))
@@ -16,4 +15,4 @@ def generate_wiki_page(query):
     with open('paragraph.txt', "w", encoding="utf-8") as f:
         f.writelines(page_py.text)
 
-generate_wiki_page("Who is the lead singer of band Vita de vie?")
+# generate_wiki_page("Who is the lead singer of band Vita de vie?")

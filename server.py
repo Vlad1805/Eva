@@ -22,10 +22,9 @@ def check_sanity():
 @app.route('/question', methods=['POST'])
 def question():
     question_contents = request.get_json()
-    # nlp = NLP(question_contents["question_text"])
-    generate_wiki_page('Romania')
+    generate_wiki_page(question_contents["question_text"])
     with open('paragraph.txt', 'r', encoding="utf-8") as f:
-        paragraph = f.readlines()[0]
+        paragraph = f.read()
     oracle = Oracle(question_contents["question_text"], paragraph)
     answer= jsonify({
         "answer": oracle.answer()
@@ -33,4 +32,4 @@ def question():
     answer.status_code=200
     return answer
 
-app.run(port=3000)
+app.run(port=3000, host="0.0.0.0")
